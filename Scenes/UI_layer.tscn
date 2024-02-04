@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://djt4u2drjpeul"]
+
+[ext_resource type="Script" path="res://Scenes/UI_layer.gd" id="1_kg7ss"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_kg7ss")
+
+[node name="BoxContainer" type="HBoxContainer" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.5
+offset_right = 55.5
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/separation = 32
+
+[node name="Restart" type="Button" parent="BoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Restart"
+
+[node name="Quit" type="Button" parent="BoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Quit
+"
+
+[node name="PointsLabel" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -115.0
+offset_top = 6.0
+offset_right = -53.0
+offset_bottom = 29.0
+grow_horizontal = 0
+text = "Points: 0"
+
+[node name="GameoverLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -287.0
+offset_top = -68.5
+offset_right = 287.0
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "GAME OVER"
+
+[connection signal="pressed" from="BoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="BoxContainer/Quit" to="." method="_on_quit_pressed"]

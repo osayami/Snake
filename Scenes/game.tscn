@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkfsndnxmc8ly"]
+
+[ext_resource type="PackedScene" uid="uid://dxu1wyruvdn25" path="res://Scenes/Snake/snake.tscn" id="1_emedu"]
+[ext_resource type="Script" path="res://Scenes/Walls.gd" id="2_80rto"]
+[ext_resource type="Texture2D" uid="uid://dgj7in4v0h4qd" path="res://Assets/top-bottom-wall.png" id="2_ej0g2"]
+[ext_resource type="PackedScene" uid="uid://b7kfc6fm44ppr" path="res://Scenes/Food/food_spawner.tscn" id="4_0btjb"]
+[ext_resource type="PackedScene" uid="uid://cj7l8if2u6mku" path="res://Scenes/Food/food.tscn" id="5_sv2ho"]
+[ext_resource type="PackedScene" uid="uid://djt4u2drjpeul" path="res://Scenes/UI_layer.tscn" id="6_k506b"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Snake" parent="." node_paths=PackedStringArray("walls") instance=ExtResource("1_emedu")]
+walls = NodePath("../Walls")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Walls" type="Node" parent="."]
+script = ExtResource("2_80rto")
+
+[node name="BottomWall" type="Sprite2D" parent="Walls" groups=["walls"]]
+position = Vector2(0, 480)
+scale = Vector2(1.933, 1)
+texture = ExtResource("2_ej0g2")
+
+[node name="TopWall" type="Sprite2D" parent="Walls" groups=["walls"]]
+position = Vector2(0, -480)
+scale = Vector2(1.933, 1)
+texture = ExtResource("2_ej0g2")
+
+[node name="RightWall" type="Sprite2D" parent="Walls" groups=["walls"]]
+position = Vector2(896, 0)
+rotation = 1.5708
+texture = ExtResource("2_ej0g2")
+
+[node name="LeftWall" type="Sprite2D" parent="Walls" groups=["walls"]]
+position = Vector2(-896, 0)
+rotation = -1.5708
+texture = ExtResource("2_ej0g2")
+
+[node name="FoodSpawner" parent="." node_paths=PackedStringArray("walls") instance=ExtResource("4_0btjb")]
+walls = NodePath("../Walls")
+food_scene = ExtResource("5_sv2ho")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("6_k506b")]
